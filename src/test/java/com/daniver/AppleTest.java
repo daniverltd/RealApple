@@ -29,6 +29,8 @@ public class AppleTest {
         assertEquals(apple.getWeight(), 10);
         assertEquals(apple.getTaste(), 1);
         assertFalse(apple.hasWorm());
+        assertFalse(apple.isPeeled());
+        assertFalse(apple.isEaten());
     }
 
     @Test
@@ -62,5 +64,17 @@ public class AppleTest {
         assertEquals(apple.getColour(), Colour.green);
         apple.setColour(Colour.blue);
         assertEquals(apple.getColour(), Colour.blue);
+    }
+
+    @Test
+    void peel() {
+        apple.peel();
+        assertTrue(apple.isPeeled());
+    }
+
+    @Test
+    void eat() {
+        apple.eat();
+        assertTrue(apple.isEaten());
     }
 }

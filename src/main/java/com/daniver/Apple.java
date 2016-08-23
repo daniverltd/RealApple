@@ -10,12 +10,16 @@ public class Apple {
     private int weight;
     private int taste;
     private boolean worm;
+    private boolean peeled;
+    private boolean eaten;
 
     public Apple() {
         colour = Colour.green;
         weight = 10;
         taste = 1;
         worm = false;
+        peeled = false;
+        eaten = false;
     }
 
     public Colour getColour() {
@@ -50,5 +54,21 @@ public class Apple {
 
     public boolean hasWorm() {
         return worm;
+    }
+
+    public void eat() {
+        eaten = true;
+    }
+
+    public boolean isEaten() {
+        return eaten;
+    }
+
+    public void peel() {
+        peeled = true;
+    }
+
+    public boolean isPeeled() {
+        return peeled;
     }
 }
