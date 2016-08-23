@@ -12,7 +12,7 @@ public class Apple {
     private boolean worm;
 
     public Apple() {
-        colour = Colour.unknown;
+        colour = Colour.green;
         weight = 10;
         taste = 1;
         worm = false;
@@ -20,6 +20,10 @@ public class Apple {
 
     public Colour getColour() {
         return colour;
+    }
+
+    public void setColour(Colour colour) {
+        this.colour = colour;
     }
 
     public int getWeight() {
