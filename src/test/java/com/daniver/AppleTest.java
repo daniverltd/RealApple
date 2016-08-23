@@ -67,21 +67,58 @@ public class AppleTest {
     }
 
     @Test
-    void peel() {
+    void peelRed() {
+        apple.setColour(Colour.red);
+        testPeeling();
+    }
+
+    void peelGreen() {
+        apple.setColour(Colour.green);
+        testPeeling();
+    }
+
+    void testPeeling() {
+        Peeler peeler = new Peeler();
+
         apple.setTaste(3);
-        expectThrows(RuntimeException.class, () -> apple.peel());
+        expectThrows(RuntimeException.class, () -> apple.peel(peeler));
 
         apple.setTaste(4);
         apple.setHasWorm(true);
-        expectThrows(RuntimeException.class, () -> apple.peel());
+        expectThrows(RuntimeException.class, () -> apple.peel(peeler));
 
         apple.setTaste(3);
         apple.setHasWorm(true);
-        expectThrows(RuntimeException.class, () -> apple.peel());
+        expectThrows(RuntimeException.class, () -> apple.peel(peeler));
 
         apple.setTaste(4);
         apple.setHasWorm(false);
-        apple.peel();
+        apple.peel(peeler);
+        assertTrue(apple.isPeeled());
+    }
+
+    @Test
+    void peelBlue() {
+        Peeler peeler = new ValyrianPeeler();
+
+        apple.setColour(Colour.blue);
+        apple.setTaste(3);
+        expectThrows(RuntimeException.class, () -> apple.peel(peeler));
+
+        apple.setTaste(4);
+        apple.setHasWorm(true);
+        expectThrows(RuntimeException.class, () -> apple.peel(peeler));
+
+        apple.setTaste(3);
+        apple.setHasWorm(true);
+        expectThrows(RuntimeException.class, () -> apple.peel(peeler));
+
+        apple.setTaste(4);
+        apple.setHasWorm(false);
+
+        expectThrows(RuntimeException.class, () -> apple.peel(new Peeler()));
+
+        apple.peel(peeler);
         assertTrue(apple.isPeeled());
     }
 
@@ -90,7 +127,7 @@ public class AppleTest {
         expectThrows(RuntimeException.class, () -> apple.eat());
 
         apple.setTaste(4);
-        apple.peel();
+        apple.peel(new Peeler());
         apple.eat();
         assertTrue(apple.isEaten());
     }

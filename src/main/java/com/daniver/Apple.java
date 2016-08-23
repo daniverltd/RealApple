@@ -70,9 +70,13 @@ public class Apple {
         return eaten;
     }
 
-    public void peel() {
+    public void peel(Peeler peeler) {
         if (hasWorm() || getTaste() < 4 )
             throw new RuntimeException("You can only peel an apple that does not have a worm and its taste is > 3");
+
+        if (getColour().equals(Colour.blue) && !(peeler instanceof ValyrianPeeler))
+            throw new RuntimeException("Blue apples can only be peeled with ValyrianPeelers");
+
         peeled = true;
     }
 
