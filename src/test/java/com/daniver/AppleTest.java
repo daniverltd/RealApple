@@ -68,6 +68,19 @@ public class AppleTest {
 
     @Test
     void peel() {
+        apple.setTaste(3);
+        expectThrows(RuntimeException.class, () -> apple.peel());
+
+        apple.setTaste(4);
+        apple.setHasWorm(true);
+        expectThrows(RuntimeException.class, () -> apple.peel());
+
+        apple.setTaste(3);
+        apple.setHasWorm(true);
+        expectThrows(RuntimeException.class, () -> apple.peel());
+
+        apple.setTaste(4);
+        apple.setHasWorm(false);
         apple.peel();
         assertTrue(apple.isPeeled());
     }
@@ -76,6 +89,7 @@ public class AppleTest {
     void eat() {
         expectThrows(RuntimeException.class, () -> apple.eat());
 
+        apple.setTaste(4);
         apple.peel();
         apple.eat();
         assertTrue(apple.isEaten());

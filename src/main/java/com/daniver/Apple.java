@@ -56,6 +56,10 @@ public class Apple {
         return worm;
     }
 
+    public void setHasWorm(boolean worm) {
+        this.worm = worm;
+    }
+
     public void eat() throws RuntimeException {
         if (!isPeeled())
             throw new RuntimeException("An apple has to be peeled before being eaten");
@@ -67,6 +71,8 @@ public class Apple {
     }
 
     public void peel() {
+        if (hasWorm() || getTaste() < 4 )
+            throw new RuntimeException("You can only peel an apple that does not have a worm and its taste is > 3");
         peeled = true;
     }
 
