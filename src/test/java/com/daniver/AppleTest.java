@@ -26,7 +26,7 @@ public class AppleTest {
     @Test
     void defaults() {
         assertEquals(apple.getColour(), Colour.unknown);
-        assertEquals(apple.getWeight(), 0);
+        assertEquals(apple.getWeight(), 10);
         assertEquals(apple.getTaste(), 1);
         assertFalse(apple.hasWorm());
     }
@@ -40,5 +40,17 @@ public class AppleTest {
 
         expectThrows(RuntimeException.class, () -> apple.setTaste(5));
         expectThrows(RuntimeException.class, () -> apple.setTaste(0));
+    }
+
+    @Test
+    void weight() {
+        apple.setWeight(10);
+        assertEquals(apple.getWeight(), 10);
+        apple.setWeight(100);
+        assertEquals(apple.getWeight(), 100);
+
+        expectThrows(RuntimeException.class, () -> apple.setWeight(9));
+        expectThrows(RuntimeException.class, () -> apple.setWeight(101));
+
     }
 }

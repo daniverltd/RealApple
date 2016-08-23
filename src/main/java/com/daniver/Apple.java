@@ -13,7 +13,7 @@ public class Apple {
 
     public Apple() {
         colour = Colour.unknown;
-        weight = 0;
+        weight = 10;
         taste = 1;
         worm = false;
     }
@@ -24,6 +24,13 @@ public class Apple {
 
     public int getWeight() {
         return weight;
+    }
+
+    public void setWeight(int weight) {
+        if (weight >= 10 && weight <= 100)
+            this.weight = weight;
+        else
+            throw new RuntimeException("An apple's weight must be between 10 and 100");
     }
 
     public int getTaste() {
