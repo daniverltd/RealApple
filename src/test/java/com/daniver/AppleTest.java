@@ -74,6 +74,9 @@ public class AppleTest {
 
     @Test
     void eat() {
+        expectThrows(RuntimeException.class, () -> apple.eat());
+
+        apple.peel();
         apple.eat();
         assertTrue(apple.isEaten());
     }

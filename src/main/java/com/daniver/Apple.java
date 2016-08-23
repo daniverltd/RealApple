@@ -56,7 +56,9 @@ public class Apple {
         return worm;
     }
 
-    public void eat() {
+    public void eat() throws RuntimeException {
+        if (!isPeeled())
+            throw new RuntimeException("An apple has to be peeled before being eaten");
         eaten = true;
     }
 
